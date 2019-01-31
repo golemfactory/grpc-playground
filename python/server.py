@@ -2,8 +2,8 @@ import asyncio
 
 from grpclib.server import Server
 
-from python.helloworld_grpc import GreeterBase
-from python.helloworld_pb2 import HelloRequest, HelloReply
+from helloworld_grpc import GreeterBase
+from helloworld_pb2 import HelloRequest, HelloReply
 
 
 class Greeter(GreeterBase):
@@ -31,7 +31,7 @@ def run_server():
 
     # Start server
     print('Starting server...')
-    loop.run_until_complete(server.start('127.0.0.1', 50051))
+    loop.run_until_complete(server.start('127.0.0.1', 54321))
     print('Started.')
 
     # Add wakeup coroutine cause asyncio can't handle Ctrl+C on Windows

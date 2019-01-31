@@ -2,13 +2,13 @@ import asyncio
 
 from grpclib.client import Channel
 
-from python.helloworld_grpc import GreeterStub
-from python.helloworld_pb2 import HelloRequest
+from helloworld_grpc import GreeterStub
+from helloworld_pb2 import HelloRequest
 
 
 def make_request():
     loop = asyncio.get_event_loop()
-    channel = Channel('127.0.0.1', 50051, loop=loop)
+    channel = Channel('127.0.0.1', 54321, loop=loop)
     stub = GreeterStub(channel)
 
     request = HelloRequest(name='World')

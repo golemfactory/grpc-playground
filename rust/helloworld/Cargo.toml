@@ -4,3 +4,11 @@ version = "0.1.0"
 authors = ["Adam Wierzbicki <awierzbicki@golem.network>"]
 
 [dependencies]
+ctrlc = "3.1.1"
+futures = "0.1.25"
+grpcio = "0.4.3"
+protobuf = "2.3.0"
+
+[[bin]]
+name = "client"
+path = "src/bin/client.rs"

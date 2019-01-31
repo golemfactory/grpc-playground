@@ -1,2 +1,4 @@
 venv
 .idea
+python/__pycache__
+rust/helloworld/target

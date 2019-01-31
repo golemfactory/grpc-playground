@@ -30,7 +30,12 @@ Available libs:
 
 To re-generate Rust definitions install `protobuf-codegen` and `grpcio-compiler` and run:
 ```
-python -m grpc_tools.protoc --proto_path=. --rust_out=rust/helloworld/src helloworld.proto
+python -m grpc_tools.protoc 
+    --proto_path=.
+    --rust_out=rust/helloworld/src
+    --grpc_out=rust/helloworld/src
+    --plugin=protoc-gen-grpc="path to grpc_rust_plugin executable"
+    helloworld.proto
 ```
 
 ## Other notes
