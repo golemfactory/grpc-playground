@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["Adam Wierzbicki <awierzbicki@golem.network>"]
 
 [dependencies]
+crossbeam-channel = "0.3.8"
 ctrlc = "3.1.1"
 futures = "0.1.25"
 grpcio = "0.4.3"
@@ -12,3 +13,7 @@ protobuf = "2.3.0"
 [[bin]]
 name = "client"
 path = "src/bin/client.rs"
+
+[[bin]]
+name = "server"
+path = "src/bin/server.rs"
