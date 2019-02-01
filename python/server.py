@@ -1,4 +1,6 @@
 import asyncio
+import ssl
+import sys
 
 from grpclib.server import Server
 
@@ -24,15 +26,19 @@ async def wakeup():
     asyncio.get_event_loop().close()
 
 
-def run_server():
+def run_server(host, port, server_cert, server_key, client_cert):
     loop = asyncio.get_event_loop()
     greeter = Greeter()
     server = Server(handlers=[greeter], loop=loop)
 
+    context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+    context.load_cert_chain(server_cert, server_key)
+    context.load_verify_locations(client_cert)
+
     # Start server
     print('Starting server...')
-    loop.run_until_complete(server.start('127.0.0.1', 54321))
-    print('Started.')
+    loop.run_until_complete(server.start(host, port, ssl=context))
+    print('Started. Press Ctrl+c to stop.')
 
     # Add wakeup coroutine cause asyncio can't handle Ctrl+C on Windows
     wakeup_task = loop.create_task(wakeup())
@@ -49,4 +55,4 @@ def run_server():
 
 
 if __name__ == '__main__':
-    run_server()
+    run_server(*sys.argv[1:])

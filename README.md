@@ -20,6 +20,14 @@ To re-generate Python definitions run:
 ```
 python -m grpc_tools.protoc --proto_path=. --python_out=python  --python_grpc_out=python helloworld.proto
 ```
+To start server run:
+```
+python python/server.py localhost &lt;PORT&gt; keys/server.crt keys/server.key keys/client.crt
+```
+To start client run:
+```
+python python/client.py localhost &lt;PORT&gt; keys/client.crt keys/client.key keys/server.crt
+```
 
 ## Rust
 
@@ -36,6 +44,14 @@ python -m grpc_tools.protoc
     --grpc_out=rust/helloworld/src
     --plugin=protoc-gen-grpc="&lt;PATH_TO_`grpc_rust_plugin`_EXECUTABLE&gt;"
     helloworld.proto
+```
+To start server run:
+```
+./rust/helloworld/target/debug/server.exe localhost &lt;PORT&gt; keys/server.crt keys/server.key keys/client.crt
+```
+To start client run:
+```
+./rust/helloworld/target/debug/client.exe localhost &lt;PORT&gt; keys/client.crt keys/client.key keys/server.crt
 ```
 
 ## Other notes
